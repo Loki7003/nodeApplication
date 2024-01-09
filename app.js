@@ -1,20 +1,33 @@
-const express = require("express"); //nie korzystam już z http!!
-const port = 3000;
+const fromAnotherFile = require("./functions")
+const express = require("express");
 const app = express();
-//gdy uzytkownik wchodzi na stronę główną
+const port = 3000;
+
+app.set("view engine", 'hbs')
+
 app.get('/', function (req, res) {
- res.send("Hello World");
+ const sample = () => {
+ return 'proba'
+ }
+ res.render('index', {
+ pageTitle: "Lekcja01",
+ subTitle: fromAnotherFile.someTitle,
+ anotherTitle: sample()
+ })
 })
- //gdy uzytkownik wchodzi na stronę o nas
-app.get('/about', function (req, res){
+
+app.get('/about', function (req, res) {
  res.send("My site")
 })
+
+var path = require('path')
+app.use('/assets', express.static(path.join(__dirname, "./assets")));
+
+app.use('/js', express.static(path.joisssn(__dirname, "./js")));
+
 app.listen(port, (err) => {
  if (err) {
  return console.log("coś poszło nie tak...:", err)
  }
  console.log("serwer działa na porcie", port)
 }) 
-// Podpięcie css
-var path = require('path')
-app.use('/assets', express.static(path.join(__dirname, "./assets")));
