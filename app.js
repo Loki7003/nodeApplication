@@ -15,3 +15,6 @@ app.listen(port, (err) => {
  }
  console.log("serwer działa na porcie", port)
 }) 
+// Podpięcie css
+var path = require('path')
+app.use('/assets', express.static(path.join(__dirname, "./assets")));
