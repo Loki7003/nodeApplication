@@ -1,2 +1,2 @@
-web: node index.hbs
+web: node app.js
 web: npm start
